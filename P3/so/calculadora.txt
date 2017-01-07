@@ -1,0 +1,145 @@
+a
+jmp 220
+
+e 0103 "1) Suma" 0a 0d "$"
+e 0120 "2) Resta" 0a 0d "$"
+e 0140 "3) Multiplicacion" 0a 0d "$"
+e 0160 "4) Division" 0a 0d "$"
+e 0180 "Selecciona una opcion" 0a 0d "$"
+e 0200 "Regresar menu s/n" 0a 0d "$"
+
+a 220
+mov ah,09  ;Comienza por mostrar el menú
+mov dx,0103
+int 21
+mov ah,09
+mov dx,0120
+int 21
+mov ah,09
+mov dx,0140
+int 21
+mov ah,09
+mov dx,0160
+int 21
+mov ah,09
+mov dx,0180
+int 21
+mov ah,01
+int 21
+cmp al,31
+je 25d
+cmp al,32
+je 293
+cmp al,33
+je 2cA
+cmp al,34
+jmp 302
+cmp al,35
+jmp 33F
+mov ah,01  ;Si la opción elegida es 1, comienza la suma
+int 21
+sub al,30
+mov bl,al
+mov ah,01 
+int 21
+sub al,30
+add al,bl
+aaa
+or ax,3030
+mov bx,ax
+sub bh,01
+mov ah,02
+mov dl,bh
+int 21
+mov ah,02
+mov dl,bl
+int 21
+mov ah,09
+mov dx,0200
+int 21
+mov ah,01 ;Si la opción elegida es 2, comienza la resta
+int 21
+cmp al,73
+je 220
+int 20
+mov ah,01
+int 21
+sub al,30
+mov bl,al
+mov ah,01
+int 21
+sub al,30
+sub al,bl
+aas
+or  ax,3030
+mov bx,ax
+sub bh,01
+mov ah,02
+mov dl,bh
+int 21
+mov ah,02
+mov dl,bl
+int 21
+mov ah,09
+mov dx,0200
+int 21
+mov ah,01 ;Si la opción elegida es 3, comienza la multiplicación
+int 21
+cmp al,73
+jmp 220
+int 20
+mov ah,01
+int 21
+sub al,30
+mov bl,al
+and bl,0f
+mov ah,01
+int 21
+sub al,30
+mul al,bl
+aam
+or ax,3030
+mov bx,ax
+mov ah,02
+mov dl,bh
+int 21
+mov ah,02
+mov dl,bl
+int 21
+mov ah,09
+mov dx,0200
+int 21
+mov ah,01 ;Si la opción elegida es 4, comienza la división
+int 21
+cmp al,73
+jmp 220
+int 20
+mov ah,01
+int 21
+sub ah,01
+sub al,30
+mov cx,ax
+mov ah,01
+int 21
+sub ah,01
+sub al,30
+mov bx,ax
+aad
+mov ax,cx
+mov cx,0000
+mov dx,0000
+div bx
+mov cx,dx
+mov ah,02
+mov dl,al
+add dl,30
+int 21
+mov ah,09
+mov dx,0200
+int 21
+mov ah,01 ;al terminar de hacer la operación, si la letra digitada es s retorna desde el comienzo.
+int 21
+clc
+cmp al,73
+je 220
+int 20

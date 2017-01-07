@@ -1,0 +1,50 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <semaphore.h>
+
+int main(int args, char *arhv[]){
+
+
+char nombre[50];
+int i=0, a;
+int j=0, l=0;
+char resultado[40];
+printf("Dame tu nombre con espacios\n");
+gets(nombre);
+int k= strlen(nombre);
+char *cadenas[k];
+
+while(nombre[i]!=NULL){
+   if(nombre[i]!=' '){
+	resultado[j]=nombre[i];
+	i++;
+	j++;
+    }
+   else{
+	
+	resultado[j]='\0';
+	j=0;
+	//printf("\ntu subcadena es: %s\n",resultado);
+	cadenas[l]=resultado;
+	printf("\nEn el array %d tenemos: %s\n",l,cadenas[l]);
+	i++;
+	l++;
+    }
+  }
+  resultado[j]='\0';
+  cadenas[l]=resultado;
+  //printf("\ntu subcadena es: %s\n",resultado);
+  printf("\nEn el array %d tenemos: %s\n",l,cadenas[l]);
+  printf("\nUltimo valor de l: %d\n",l);
+   for(a=0;a<l;a++){
+
+       printf("\n%d, %s\n",a,cadenas[a]);
+	
+   }
+
+return 0;
+}

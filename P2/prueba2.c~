@@ -1,0 +1,32 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>		
+#include <semaphore.h>
+
+int main(int args, char *arhv[]){
+
+char nombre[50];
+int i=0;
+char resultado[40];
+printf("Dame tu nombre con espacios\n");
+scanf("%s", nombre);
+while(nombre[i]!='\0'){
+   if(nombre[i]!=' '){
+	resultado[i]=nombre[i];
+	i++;
+	printf("%c",nombre[i]);
+    }
+   else{
+	printf("b1");
+	resultado[i]='\0';       
+	printf("\ntu subcadena es: %s",resultado);
+	i++;  
+    }
+  
+  }
+
+return 0;
+}

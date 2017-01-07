@@ -1,0 +1,24 @@
+//Programa que realiza operaciones con apuntadores a cadenas
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>		
+#include <semaphore.h>
+
+int main(int args, char *arhv[]){
+
+   char *cadenas[5];//arreglo de 5 cadenas
+   char mensaje[5]="hola";
+   char signo[3]="?";
+   cadenas[0]=mensaje;
+   cadenas[1]="como";
+   cadenas[2]="estas";
+   cadenas[3]=signo;
+   //cadenas[4]="!\n";
+   printf("%s %s %s ",cadenas[0],cadenas[1],cadenas[2], cadenas[3]);
+   
+    return 0;
+
+}
